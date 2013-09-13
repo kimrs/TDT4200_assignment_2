@@ -1,0 +1,33 @@
+\documentclass[a4paper, 11pt, english]{article}
+	\usepackage{listings, babel, blindtext}
+	\author{Kim Rune Solstad, TDT4200, NTNU}
+	\title{Assignment 2, MPI}
+
+	\lstset{language=c}
+
+\begin{document}
+\maketitle
+\section{Problem 1}
+\subsection{a)}
+Explain the difference between MPI\_Send(), MPI\_Isend() and MPI\_Ssend().
+\\
+\\
+The three functions mentioned are mpi send functions with different modes. Different modes will give the program different guarantees. The four send modes in MPI are:
+\begin{enumerate}
+	\item Standard
+	\item Synchronized
+	\item Bufferred
+	\item Ready
+\end{enumerate}
+
+MPI\_Send() is the standard mode. It will send the message absent any hazzles or guaranties. MPI\_Ssend() is the send function that belongs to the synchronized mode. MPI\_Ssend() will complete the transmission when it has been received at the other end. All of these functions have non-blocking alternatives. By blocking, we mean that execution will be suspended until the message buffer is safe to use. MPI\_Isend is the non-blocking alternative to MPI\_Send(). 
+\subsection{b)}
+What is a communicator in MPI? What is the purpose of a cartesian communicator?
+\\\\
+A communicator is a collection of processes that can send messages to each other. The cartesian communicator has a topology of a multi-dimensional array.
+\section*{Ref}
+\begin{enumerate}
+	\item www.ncsa.illinois.edu/UserInfo/Resources/Hardware/CommonDoc/MessPass/MPIBlock.html
+\end{enumerate}
+
+\end{document}
