@@ -23,7 +23,8 @@ void exchange_borders(){
 
 // One jacobi iteration
 void jacobi_iteration(){
-	printf("itr");
+	if(rank == 1)
+		printf("itr");
 }
 
 // Solve linear system with jacobi method
