@@ -8,7 +8,7 @@
 
 // Distribute the diverg (bs) from rank 0 to all the processes
 void distribute_diverg(){
-
+	printf("SIZE: ", size);
 }
 
 // Gather the results of the computation at rank 0

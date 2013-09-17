@@ -45,6 +45,7 @@ void create_types(){
 }
 
 int main (int argc, char **argv) {
+ 	printf("Start!!");   
     // Reading command line arguments
     iterations = 100;
     imageSize = 512;
