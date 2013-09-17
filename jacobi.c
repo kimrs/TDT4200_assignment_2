@@ -23,13 +23,12 @@ void exchange_borders(){
 
 // One jacobi iteration
 void jacobi_iteration(){
-	if(rank == 1)
-		printf("itr");
+	
 }
 
 // Solve linear system with jacobi method
 void jacobi (int iter) {
-
+	printf("north: %d south: %d east: %d west: %d", north, south, east, west);
 
     // Jacobi iterations
     for (int k=0; k<iter; k++) {	
