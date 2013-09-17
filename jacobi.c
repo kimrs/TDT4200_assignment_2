@@ -23,7 +23,7 @@ void exchange_borders(){
 
 // One jacobi iteration
 void jacobi_iteration(){
-
+	printf("itr");
 }
 
 // Solve linear system with jacobi method
@@ -32,7 +32,7 @@ void jacobi (int iter) {
 
     // Jacobi iterations
     for (int k=0; k<iter; k++) {	
-
+	jacobi_iteration();
     }
 
 }
