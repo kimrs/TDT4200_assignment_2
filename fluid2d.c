@@ -156,7 +156,7 @@ void advect (int N, float *d, float *d0, float *velx, float *vely, float dt, flo
 	
 */
 void divergence (int N, float *velx, float *vely, float *div) {
-{	
+{
 	for (int j=1; j<=N; j++) {
 		for (int i=1; i<=N; i++) {
 

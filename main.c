@@ -79,13 +79,15 @@ int main (int argc, char **argv) {
     local_pres0 = (float*)malloc(sizeof(float)*(local_width + 2*border)*(local_height+2*border));
     local_diverg = (float*)malloc(sizeof(float)*local_width*local_height);
 
+    
     // Initializing the CFD computation, only one process should do this.
     if(rank == 0){
         initFluid( &config, imageSize, imageSize);
         pres = config.pres;
-        diverg = config.div;
-
-        imageBuffer = (unsigned char*)malloc(sizeof(unsigned char)*imageSize*imageSize);
+        diverg = config.div;	
+	//printDivergArray();
+        printf("Diverg: %g\n", diverg);
+	imageBuffer = (unsigned char*)malloc(sizeof(unsigned char)*imageSize*imageSize);
     }
 
     // Solving the CFD equations, one iteration for each timestep.
@@ -98,7 +100,7 @@ int main (int argc, char **argv) {
 
     // Converting the density to an image and writing it to file.
     if(rank == 0){
-        densityToColor(imageBuffer, config.dens, config.N);
+	densityToColor(imageBuffer, config.dens, config.N);
         write_bmp(imageBuffer, imageSize, imageSize);
 
         // Free fluid simulation memory
@@ -107,4 +109,28 @@ int main (int argc, char **argv) {
 
     // Finalize
     MPI_Finalize();
+
+}
+
+void printDivergArray()
+{
+	for(int i = 0; i < 50; i++)
+	{
+		printf("diverg+i: %g\tdiverg: %g\t", (diverg + i), diverg);
+		if(i % 2 == 0)
+			printf("\n");
+	}
+}
+
+void printInfo()
+{
+
+    	printf("I'm rank %d and my coords are %d, %d\n", rank, coords[0], coords[1]);	
+	printf("my neighbors are n%d, s%d, w%d, e%d\n", north, south, west, east);
+	printf("my subdomain width: %d, height: %d\n", local_height, local_width);
+//	printf("total width: %d, height: %d\n", width, height);
+	printf("image_size: %d\tdims: %d, %d\n", imageSize, dims[0], dims[1]);
+	printf("local_diverg: %g\tdiverg: %g\n", local_diverg, diverg);
+	printf("local_pres: %g\tpres: %g\n", local_pres, pres);
+	printf("border: %d\n", border);
 }
